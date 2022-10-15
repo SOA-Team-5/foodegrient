@@ -1,7 +1,7 @@
 # frozen_string_literal: true
 
 require 'http'
-require_relative 'food'
+require_relative 'menu'
 
 module Foodegrient
   # class for API utilities
@@ -44,15 +44,12 @@ module Foodegrient
       result
     end
 
-    def recipes(ingredients)
+    def menu(ingredients)
       query = build_query(ingredients)
       recipes_url = food_api_path(query)
       recipes = call_food_url(recipes_url).parse
-      save_files(recipes)
+      Menu.new(ingredients, recipes)
     end
 
-    def save_files(recipes_data)
-      File.write('spec/fixtures/results.yml', recipes_data.to_yaml)
-    end
   end
 end
