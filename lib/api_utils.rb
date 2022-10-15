@@ -50,6 +50,5 @@ module Foodegrient
       recipes = call_food_url(recipes_url).parse
       Menu.new(ingredients, recipes)
     end
-
   end
 end

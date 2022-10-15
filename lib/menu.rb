@@ -8,9 +8,7 @@ module Foodegrient
       @recipes = recipes
     end
 
-    def main_ingredients
-      @main_ingredients
-    end
+    attr_reader :main_ingredients
 
     def size
       @recipes.size
