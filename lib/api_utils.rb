@@ -1,10 +1,11 @@
+# frozen_string_literal: true
+
 require 'http'
 require_relative 'food'
 
 module Foodegrient
-
   class ApiUtils
-    API_ROOT = "https://api.spoonacular.com/recipes/findByIngredients"
+    API_ROOT = 'https://api.spoonacular.com/recipes/findByIngredients'
 
     module Errors
       class NotFound < StandardError; end
@@ -36,29 +37,21 @@ module Foodegrient
     def build_query(ingredients)
       result = String.new
       result << 'recipes/findByIngredients'
-      if ingredients.size > 0
-        result << "?ingredients=#{ingredients[0]}"
-        ingredients.shift
-        ingredients.each do |ingredient|
-          result << ",+#{ingredient}"
-        end
+      ingredients.each_with_index do |ingredient, index|
+        result += index==0 ? "?ingredients=#{ingredient}" : ",+#{ingredient}"
       end
-      puts result
       result
     end
 
     def recipes(ingredients)
       query = build_query(ingredients)
       recipes_url = food_api_path(query)
-      puts recipes_url
-      recipes_data = call_food_url(recipes_url).parse
-      recipes_data
+      recipes = call_food_url(recipes_url).parse
+      save_files(recipes)
     end
 
     def save_files(recipes_data)
       File.write('spec/fixtures/results.yml', recipes_data.to_yaml)
     end
-
   end
-
 end
