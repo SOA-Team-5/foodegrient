@@ -4,6 +4,7 @@ require 'http'
 require_relative 'food'
 
 module Foodegrient
+  # class for API utilities
   class ApiUtils
     API_ROOT = 'https://api.spoonacular.com/recipes/findByIngredients'
 
@@ -38,7 +39,7 @@ module Foodegrient
       result = String.new
       result << 'recipes/findByIngredients'
       ingredients.each_with_index do |ingredient, index|
-        result += index==0 ? "?ingredients=#{ingredient}" : ",+#{ingredient}"
+        result += index.zero? ? "?ingredients=#{ingredient}" : ",+#{ingredient}"
       end
       result
     end
