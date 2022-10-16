@@ -7,6 +7,7 @@ Want to parse a list of ingredients within a recipe? Or are you looking for a ra
 * Wine Pairing
 * Dish Pairing for Wine
 * Wine Recommendation
+* Detect Food in Text
 ## Elements
 
 * Search Recipes by Ingredients()
@@ -29,7 +30,13 @@ Want to parse a list of ingredients within a recipe? Or are you looking for a ra
     *  price
     *  ratingCount
     *  score
+ * Detect Food in Text
+    *  annotation
+    *  image
+    *  tag
 ## Elements
    These are objects that are important to the project
-   * Cooking Recipes
-   * Cocktails
+   * Recipes(aka Search Recipes by Ingredients)
+   * wine(aka Wine Pairing/Dish Pairing for Wine and Wine Recommendation)
+   * misc(aka Detect Food in Text)
+   
