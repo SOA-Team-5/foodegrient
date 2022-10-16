@@ -3,13 +3,13 @@ Want to parse a list of ingredients within a recipe? Or are you looking for a ra
 
 ## Resourse
 
-* Recipes by Ingredients
+* Search Recipes by Ingredients
 * Wine Pairing
 * Dish Pairing for Wine
 * Wine Recommendation
 ## Elements
 
-* Recipes by Ingredients
+* Search Recipes by Ingredients()
     *  image
     *  likes
     *  title
@@ -30,3 +30,6 @@ Want to parse a list of ingredients within a recipe? Or are you looking for a ra
     *  ratingCount
     *  score
 ## Elements
+   These are objects that are important to the project
+   * Cooking Recipes
+   * Cocktails
