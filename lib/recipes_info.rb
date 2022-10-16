@@ -31,4 +31,4 @@ bad_recipes_url = gh_api_path('recipes/bad')
 sp_response[bad_recipes_url] = call_gh_url(config, bad_recipes_url)
 sp_response[bad_recipes_url].status.client_error?
 
-File.write('spec/fixtures/github_results.yml', sp_results.to_yaml)
+File.write('spec/fixtures/results.yml', sp_results.to_yaml)
