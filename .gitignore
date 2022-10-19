@@ -57,4 +57,3 @@ build-iPhoneSimulator/
 
 # others
 /config/secrets.yml
-/spec/fixtures
