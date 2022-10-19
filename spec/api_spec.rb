@@ -22,8 +22,8 @@ describe 'Tests API library' do
 
   before do
     VCR.insert_cassette CASSETTES_FILE,
-      record: :new_episodes,
-      match_requests_on: %i[method uri headers]
+                        record: :new_episodes,
+                        match_requests_on: %i[method uri headers]
   end
 
   after do

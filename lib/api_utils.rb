@@ -8,8 +8,11 @@ module Foodegrient
   class ApiUtils
     API_ROOT = 'https://api.spoonacular.com/recipes/findByIngredients'
 
+    # Decorates Error Responses
     module Errors
+      # 404 NotFound
       class NotFound < StandardError; end
+      # 401 Unauthorized
       class Unauthorized < StandardError; end
     end
 
@@ -36,8 +39,7 @@ module Foodegrient
     end
 
     def build_query(ingredients)
-      result = String.new
-      result << 'recipes/findByIngredients'
+      result = 'recipes/findByIngredients'
       ingredients.each_with_index do |ingredient, index|
         result += index.zero? ? "?ingredients=#{ingredient}" : ",+#{ingredient}"
       end
