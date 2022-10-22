@@ -3,13 +3,33 @@
 require 'minitest/autorun'
 require 'minitest/rg'
 require 'yaml'
+require 'vcr'
+require 'webmock'
 require_relative '../lib/api_utils'
 
 CONFIG = YAML.safe_load(File.read('config/secrets.yml'))
 API_TOKEN = CONFIG['FOOD_API_TOKEN']
 CORRECT = YAML.safe_load(File.read('spec/fixtures/recipes_results.yml'))
+CASSETTES_FOLDER = 'spec/fixtures/cassettes'
+CASSETTES_FILE = 'food_api'
 
 describe 'Tests API library' do
+  VCR.configure do |c|
+    c.cassette_library_dir = CASSETTES_FOLDER
+    c.hook_into :webmock
+    c.filter_sensitive_data('<API_TOKEN>') { API_TOKEN }
+  end
+
+  before do
+    VCR.insert_cassette CASSETTES_FILE,
+                        record: :new_episodes,
+                        match_requests_on: %i[method uri headers]
+  end
+
+  after do
+    VCR.eject_cassette
+  end
+
   describe 'Recipes information' do
     it 'HAPPY: should provide correct attributes' do
       ingredients = %w[apple watermelon]
