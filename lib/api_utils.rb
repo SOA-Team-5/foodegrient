@@ -31,8 +31,11 @@ module Foodegrient
 
     def call_food_url(url)
       result = HTTP.headers('x-api-key' => @api_token).get(url)
-      code = result.code
-      HTTP_ERROR.keys.include?(code) ? result : raise(HTTP_ERROR[code])
+      successful?(result) ? result : raise(HTTP_ERROR[result.code])
+    end
+
+    def successful?(result)
+      !HTTP_ERROR.keys.include?(result.code)
     end
 
     def build_query(ingredients)
