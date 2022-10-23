@@ -1,17 +1,6 @@
 # frozen_string_literal: true
 
-require 'minitest/autorun'
-require 'minitest/rg'
-require 'yaml'
-require 'vcr'
-require 'webmock'
-require_relative '../lib/api_utils'
-
-CONFIG = YAML.safe_load(File.read('config/secrets.yml'))
-API_TOKEN = CONFIG['FOOD_API_TOKEN']
-CORRECT = YAML.safe_load(File.read('spec/fixtures/recipes_results.yml'))
-CASSETTES_FOLDER = 'spec/fixtures/cassettes'
-CASSETTES_FILE = 'food_api'
+require_relative 'spec_helper'
 
 describe 'Tests API library' do
   VCR.configure do |c|
