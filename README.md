@@ -8,6 +8,8 @@ Want to parse a list of ingredients within a recipe? Or are you looking for a ra
 * Dish Pairing for Wine
 * Wine Recommendation
 * Detect Food in Text
+* Search Menu Items
+* Get Menu Item Information
 ## Elements
 
 * Search Recipes by Ingredients()
@@ -15,7 +17,7 @@ Want to parse a list of ingredients within a recipe? Or are you looking for a ra
     *  likes
     *  title
     *  name
-    * original
+    *  original
 * Wine Pairing(Find a wine that goes well with a food. Food can be a dish name ("steak"), an ingredient name "salmon", or a cuisine "italian")
     *  pairedWines
     *  pairingText
@@ -34,9 +36,28 @@ Want to parse a list of ingredients within a recipe? Or are you looking for a ra
     *  annotation
     *  image
     *  tag
+ * Search Menu Items
+    *  title
+    *  restaurantChain
+    *  image
+    *  servings
+        *  number
+        *  size
+        *  unit
+    * totalMenuItems
+ *  Get Menu Item Information
+    *  title
+    *  restaurantChain
+    *  nutritions
+    *  caloricBreakdown
+    *  likes
+    *  servings
+    *  price
+    *  spoonacularScore
 ## Elements
    These are objects that are important to the project
    * Recipes(aka Search Recipes by Ingredients)
    * wine(aka Wine Pairing/Dish Pairing for Wine and Wine Recommendation)
    * misc(aka Detect Food in Text)
+   * menu(aka Search Menu Items and Get Menu Item Information)
    
