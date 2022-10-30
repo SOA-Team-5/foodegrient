@@ -4,7 +4,7 @@ require 'http'
 require_relative 'menu'
 
 module Foodegrient
-  module Food
+  module Spoonacular
     # Library for Food API utilities
     class Api
       API_ROOT = 'https://api.spoonacular.com/recipes/findByIngredients'
