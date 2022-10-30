@@ -3,6 +3,8 @@
 require 'roda'
 require 'slim'
 
+require_relative '../../spec/spec_helper'
+
 module Foodegrient
   # Web App
   class App < Roda
@@ -36,7 +38,11 @@ module Foodegrient
         routing.on String do |keywords|
           # GET /menu/result/keywords
           routing.get do
-            view('result', locals: { keywords: keywords })
+            # rec = Spoonacular::MenuMapper
+            #       .new(API_TOKEN)
+            #       .search(%w[keywords])
+            result = Foodegrient::ApiUtils.new(API_TOKEN).menu(keywords.split(" "))
+            view('result', locals: { keywords: keywords, res: result })
           end
         end
       end
