@@ -6,7 +6,7 @@ require_relative 'menu'
 module Foodegrient
   # class for API utilities
   class ApiUtils
-    API_ROOT = 'https://api.spoonacular.com/recipes/findByIngredients'
+    API_ROOT = 'https://api.spoonacular.com/'
 
     # Decorates Error Responses
     module Errors
@@ -26,7 +26,7 @@ module Foodegrient
     end
 
     def food_api_path(path)
-      "https://api.spoonacular.com/#{path}"
+      API_ROOT + path
     end
 
     def call_food_url(url)
