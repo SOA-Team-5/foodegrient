@@ -20,7 +20,6 @@ module Foodegrient
         view 'home'
       end
 
-
       routing.on 'menu' do
         routing.is do
           # POST /project/
@@ -30,33 +29,16 @@ module Foodegrient
             #                         (gh_url.split('/').count >= 3)
             # owner, project = gh_url.split('/')[-2..]
 
-            routing.redirect "menu/result/#{keywords}"
+            routing.redirect "menu/#{keywords}"
           end
         end
 
         routing.on String do |keywords|
-          # GET /project/owner/project
+          # GET /menu/result/keywords
           routing.get do
-            # github_project = Github::ProjectMapper
-            #   .new(GH_TOKEN)
-            #   .find(owner, project)
-
-            view 'result'
-            # , locals: { project: github_project }
+            view('result', locals: { keywords: keywords })
           end
         end
-
-      # routing.on 'result' do
-      #   routing.on String do |words|
-      #     # GET /project/owner/project
-      #     menu_result = Entity::Menu
-      #         .new(GH_TOKEN)
-      #         .find(owner, project)
-      #     routing.get do
-      #       view 'result'
-      #     end
-      #   end
-      # end
       end
     end
   end
