@@ -38,8 +38,7 @@ module Foodegrient
         def menu(ingredients)
           query = build_query(ingredients)
           recipes_url = API_ROOT + query
-          recipes = call_food_url(recipes_url).parse
-          Menu.new(ingredients, recipes)
+          call_food_url(recipes_url)
         end
       end
 
