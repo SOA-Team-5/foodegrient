@@ -5,7 +5,7 @@ require_relative 'menu'
 
 module Foodegrient
   module Spoonacular
-    # Library for Food API utilities
+    # Library for Spoonacular API utilities
     class Api
       def initialize(token)
         @food_token = token
@@ -25,6 +25,7 @@ module Foodegrient
         end
       end
 
+      # Sends out HTTP requests to Spoonacular API
       class Request
         API_ROOT = 'https://api.spoonacular.com/'
 
@@ -42,8 +43,7 @@ module Foodegrient
         end
       end
 
-
-      # Decorates HTTP responses from Food API
+      # Decorates HTTP responses from Spoonacular API
       class Response < SimpleDelegator
         Unauthorized = Class.new(StandardError)
         NotFound = Class.new(StandardError)
