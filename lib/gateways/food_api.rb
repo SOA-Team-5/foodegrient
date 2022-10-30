@@ -7,37 +7,39 @@ module Foodegrient
   module Spoonacular
     # Library for Food API utilities
     class Api
-      API_ROOT = 'https://api.spoonacular.com/recipes/findByIngredients'
-      class Request
+      def initialize(token)
+        @food_token = token
+      end
 
-        def initialize(token)
-          @api_token = token
-        end
+      def menu_data(ingredients)
+        Request.new(@food_token).menu(ingredients).parse
+      end
 
-        def food_api_path(path)
-          "https://api.spoonacular.com/#{path}"
-        end
-
+      class Utils
         def build_query(ingredients)
-          result = 'recipes/findByIngredients'
+          query = 'recipes/findByIngredients'
           ingredients.each_with_index do |ingredient, index|
-            result += index.zero? ? "?ingredients=#{ingredient}" : ",+#{ingredient}"
+            query += index.zero? ? "?ingredients=#{ingredient}" : ",+#{ingredient}"
           end
-          result
+          query
         end
+      end
 
-        def menu(ingredients)
-          query = build_query(ingredients)
-          recipes_url = food_api_path(query)
-          recipes = call_food_url(recipes_url).parse
-          Menu.new(ingredients, recipes)
-        end
+      class Request
+        API_ROOT = 'https://api.spoonacular.com/'
 
-        def get(url)
+        def call_food_url(url)
           result = HTTP.headers('x-api-key' => @api_token).get(url)
           Response.new(result).tap do |response|
             raise(response.error) unless response.successful?
           end
+        end
+
+        def menu(ingredients)
+          query = build_query(ingredients)
+          recipes_url = API_ROOT + query
+          recipes = call_food_url(recipes_url).parse
+          Menu.new(ingredients, recipes)
         end
       end
 
