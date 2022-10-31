@@ -27,7 +27,6 @@ module Foodegrient
         def initialize(ingredients, data)
           @ingredients = ingredients
           @data = data
-          @recipe_mapper = RecipeMapper.new(data)
         end
 
         def build_entity
