@@ -9,10 +9,10 @@ module Foodegrient
     class Recipe < Dry::Struct
       include Dry.Types
 
-      attribute :id,        Integer
+      attribute :id,        Integer.optional
       attribute :image,     Strict::String
       attribute :title,      Strict::String
-      attribute :ingredients, Strict::Array.of(String)
+      # attribute :ingredients, Strict::Array.of(String)
     end
   end
 end

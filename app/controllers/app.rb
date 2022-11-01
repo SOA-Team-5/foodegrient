@@ -27,9 +27,6 @@ module Foodegrient
           # POST /project/
           routing.post do
             keywords = routing.params['keywords']
-            # routing.halt 400 unless (gh_url.include? 'github.com') &&
-            #                         (gh_url.split('/').count >= 3)
-            # owner, project = gh_url.split('/')[-2..]
 
             routing.redirect "menu/#{keywords}"
           end
@@ -38,11 +35,10 @@ module Foodegrient
         routing.on String do |keywords|
           # GET /menu/result/keywords
           routing.get do
-            # rec = Spoonacular::MenuMapper
-            #       .new(API_TOKEN)
-            #       .search(%w[keywords])
-            result = Foodegrient::ApiUtils.new(API_TOKEN).menu(keywords.split(" "))
-            view('result', locals: { keywords: keywords, res: result })
+            result = Spoonacular::MenuMapper
+                     .new(API_TOKEN)
+                     .search(keywords.split)
+            view('result', locals: { keywords:, res: result })
           end
         end
       end

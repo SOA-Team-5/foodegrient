@@ -19,7 +19,7 @@ module Foodegrient
       end
 
       def build_entity(ingredients, data)
-        DataMapper.new(ingredients, data, @token, @gateway_class).build_entity
+        DataMapper.new(ingredients, data).build_entity
       end
 
       # Extracts entity specific elements from data structure
@@ -27,13 +27,14 @@ module Foodegrient
         def initialize(ingredients, data)
           @ingredients = ingredients
           @data = data
+          @recipe_mapper = RecipeMapper.new(@data)
         end
 
         def build_entity
           Foodegrient::Entity::Menu.new(
-            id: nil,
-            ingredients:,
-            recipes:,
+            id: 0,
+            ingredients: @ingredients,
+            recipes: ,
           )
         end
 
@@ -42,7 +43,7 @@ module Foodegrient
         end
 
         def recipes
-          @data
+          @recipe_mapper.load_several()
         end
       end
     end

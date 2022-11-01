@@ -1,7 +1,7 @@
 # frozen_string_literal: true
 
 require 'http'
-require_relative 'menu'
+require_relative '../entities/menu'
 
 module Foodegrient
   module Spoonacular
@@ -27,10 +27,22 @@ module Foodegrient
 
       # Sends out HTTP requests to Spoonacular API
       class Request
+        def initialize(token)
+          @food_token = token
+        end
+
         API_ROOT = 'https://api.spoonacular.com/'
 
+        def build_query(ingredients)
+          query = 'recipes/findByIngredients'
+          ingredients.each_with_index do |ingredient, index|
+            query += index.zero? ? "?ingredients=#{ingredient}" : ",+#{ingredient}"
+          end
+          query
+        end
+
         def call_food_url(url)
-          result = HTTP.headers('x-api-key' => @api_token).get(url)
+          result = HTTP.headers('x-api-key' => @food_token).get(url)
           Response.new(result).tap do |response|
             raise(response.error) unless response.successful?
           end
@@ -49,8 +61,8 @@ module Foodegrient
         NotFound = Class.new(StandardError)
 
         HTTP_ERROR = {
-          401 => Errors::Unauthorized,
-          404 => Errors::NotFound
+          # 401 => Errors::Unauthorized,
+          # 404 => Errors::NotFound
         }.freeze
 
         def successful?
