@@ -2,7 +2,7 @@
 
 module CodePraise
   module Repository
-    # Repository for Members
+    # Repository for Recipes
     class Recipes
       def self.find_id(id)
         rebuild_entity Database::RecipeOrm.first(id:)
