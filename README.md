@@ -61,5 +61,8 @@ Want to parse a list of ingredients within a recipe? Or are you looking for a ra
    * misc(aka Detect Food in Text)
    * menu(aka Search Menu Items and Get Menu Item Information)
 
+## Database
+   The foodegrient database will menu and recipe two tables. to record the composition of the menu and the recipe title image and menu id.
+   
 ## Entity-Relationship Diagram
 <img width="441" alt="1" src="https://user-images.githubusercontent.com/84471360/200188632-75bb77c3-a7ab-4b56-bbd0-847516249de5.png">
