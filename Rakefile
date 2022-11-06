@@ -52,6 +52,10 @@ namespace :db do
   end
 end
 
+desc 'Run application console'
+task :console do
+  sh 'pry -r ./load_all'
+end
 
 namespace :vcr do
   desc 'delete cassette fixtures'
