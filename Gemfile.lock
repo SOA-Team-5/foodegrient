@@ -34,6 +34,7 @@ GEM
       dry-inflector (~> 0.1, >= 0.1.2)
       dry-logic (~> 1.0, >= 1.0.2)
     ffi (1.15.5)
+    ffi (1.15.5-x64-mingw-ucrt)
     ffi (1.15.5-x64-unknown)
     ffi-compiler (1.0.1)
       ffi (>= 1.0.0)
@@ -113,12 +114,14 @@ GEM
       tilt (>= 2.0.6, < 2.1)
     sqlite3 (1.5.3)
       mini_portile2 (~> 2.8.0)
+    sqlite3 (1.5.3-x64-mingw-ucrt)
     temple (0.8.2)
     thor (1.2.1)
     tilt (2.0.11)
     unf (0.1.4)
       unf_ext
     unf_ext (0.0.8.2)
+    unf_ext (0.0.8.2-x64-mingw-ucrt)
     unicode-display_width (0.1.1)
     vcr (6.1.0)
     webmock (3.18.1)
@@ -127,6 +130,7 @@ GEM
       hashdiff (>= 0.4.0, < 2.0.0)
 
 PLATFORMS
+  x64-mingw-ucrt
   x64-unknown
   x86_64-darwin-21
   x86_64-linux
