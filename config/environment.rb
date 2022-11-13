@@ -10,6 +10,9 @@ module Foodegrient
   class App < Roda
     plugin :environments
 
+    CONFIG = YAML.safe_load(File.read('config/secrets.yml'))
+    FOOD_API_TOKEN = CONFIG['FOOD_API_TOKEN']
+    
     # rubocop:disable Lint/ConstantDefinitionInBlock
     configure do
       # Environment variables setup

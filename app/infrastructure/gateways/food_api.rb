@@ -1,7 +1,7 @@
 # frozen_string_literal: true
 
 require 'http'
-require_relative '../entities/menu'
+# require_relative '../../models/entities/menu'
 
 module Foodegrient
   module Spoonacular
