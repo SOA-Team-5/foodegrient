@@ -6,6 +6,10 @@ source 'https://rubygems.org'
 gem 'figaro', '~> 1.2'
 gem 'rake'
 
+group :production do
+  gem 'pg'
+end
+
 # Web Application
 gem 'puma', '~> 6'
 gem 'roda', '~> 3'
