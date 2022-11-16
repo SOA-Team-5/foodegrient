@@ -14,8 +14,8 @@ module CodePraise
         find_origin_id(entity.origin_id)
       end
 
-      def self.find_id(id)
-        menu = Database::MenuOrm.first(id:)
+      def self.find_id(myId)
+        menu = Database::MenuOrm.first(id:myId)
         rebuild_entity(menu)
       end
 

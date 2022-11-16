@@ -29,9 +29,9 @@ module Foodegrient
     
             def build_entity
               Entity::Recipe.new(
-                id: nil,
-                image:,
-                title:,
+                id: id,
+                image: image,
+                title: title,
                 # ingredients:
               )
             end

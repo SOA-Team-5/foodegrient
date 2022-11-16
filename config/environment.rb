@@ -10,8 +10,8 @@ module Foodegrient
   class App < Roda
     plugin :environments
 
-    CONFIG = YAML.safe_load(File.read('config/secrets.yml'))
-    FOOD_API_TOKEN = CONFIG['FOOD_API_TOKEN']
+    # CONFIG = YAML.safe_load(File.read('config/secrets.yml'))
+    # FOOD_API_TOKEN = CONFIG['FOOD_API_TOKEN']
     
     # rubocop:disable Lint/ConstantDefinitionInBlock
     configure do
@@ -20,8 +20,10 @@ module Foodegrient
         environment:environment,
         path: File.expand_path('config/secrets.yml')
       )
-      Figaro.load
-      def self.config = Figaro.env
+      Figaro.load;
+      def self.config 
+        Figaro.env
+      end
 
       configure :development, :test do
         ENV['DATABASE_URL'] = "sqlite://#{config.DB_FILENAME}"
@@ -29,7 +31,9 @@ module Foodegrient
 
       # Database Setup
       DB = Sequel.connect(ENV.fetch('DATABASE_URL'))
-      def self.DB = DB # rubocop:disable Naming/MethodName
+      def self.DB 
+        DB # rubocop:disable Naming/MethodName
+      end
     end
     # rubocop:enable Lint/ConstantDefinitionInBlock
   end

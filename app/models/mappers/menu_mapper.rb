@@ -34,7 +34,7 @@ module Foodegrient
           Foodegrient::Entity::Menu.new(
             id: 0,
             ingredients: @ingredients,
-            recipes: ,
+            recipes: RecipeMapper.new(@data).load_several()
           )
         end
 

@@ -4,12 +4,12 @@ module CodePraise
   module Repository
     # Repository for Recipes
     class Recipes
-      def self.find_id(id)
-        rebuild_entity Database::RecipeOrm.first(id:)
+      def self.find_id(myId)
+        rebuild_entity Database::RecipeOrm.first(id: myId)
       end
 
-      def self.find_title(title)
-        rebuild_entity Database::RecipeOrm.title(title:)
+      def self.find_title(myTitle)
+        rebuild_entity Database::RecipeOrm.title(title: myTitle)
       end
 
       def self.rebuild_entity(db_record)
