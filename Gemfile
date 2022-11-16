@@ -2,6 +2,8 @@
 
 source 'https://rubygems.org'
 
+ruby '3.1.2'
+
 # Configuration and Utilities
 gem 'figaro', '~> 1.2'
 gem 'rake'
