@@ -38,7 +38,7 @@ module Foodegrient
             result = Spoonacular::MenuMapper
                      .new(App.config.FOOD_API_TOKEN)
                      .search(keywords.split)
-            view('result', locals: { keywords: keywords, res: result })
+            view('result', locals: { keywords:, res: result })
           end
         end
       end

@@ -34,12 +34,8 @@ module Foodegrient
           Foodegrient::Entity::Menu.new(
             id: 0,
             ingredients: @ingredients,
-            recipes: ,
+            recipes:,
           )
-        end
-
-        def ingredients
-          @ingredients
         end
 
         def recipes
