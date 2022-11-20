@@ -4,7 +4,10 @@
       span.project.owner
         = "Keywords: "
       span.project.name style="padding-left:20px"
-        = keywords
+        / - results_list.keywords.each do |item|
+        /   .col-sm-12
+        /     = item
+        = results_list.keywords
   .container
     .row
       .col-lg-1.col-md-2.col-sm-2
@@ -17,13 +20,13 @@
         span.project.attribute Recipes
       .col-lg-11.col-md-10.col-sm-6
         .row
-          - res.recipes.each do |recipe|
+          - results_list.menus.recipes.each do |recipe|
             .col-sm-12
               span.project.detail
                = recipe.title
             .col-sm-12
               span.project.detail
-               img src=recipe.image
+               img src= recipe.image
             .col-sm-12
               p
 
