@@ -4,10 +4,8 @@
       span.project.owner
         = "Keywords: "
       span.project.name style="padding-left:20px"
-        / - results_list.keywords.each do |item|
-        /   .col-sm-12
-        /     = item
-        = results_list.keywords
+        - results_list.keywords.each do |item|
+            = item + ' '
   .container
     .row
       .col-lg-1.col-md-2.col-sm-2
