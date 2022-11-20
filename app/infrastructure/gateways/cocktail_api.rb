@@ -48,8 +48,8 @@ module Foodegrient
         NotFound = Class.new(StandardError)
 
         HTTP_ERROR = {
-          # 401 => Errors::Unauthorized,
-          # 404 => Errors::NotFound
+          401 => Unauthorized,
+          404 => NotFound
         }.freeze
 
         def successful?
