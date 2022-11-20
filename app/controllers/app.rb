@@ -24,9 +24,9 @@ module Foodegrient
         routing.is do
           # POST /project/
           routing.post do
-            keywords = routing.params['keywords']
+            ori_keywords = routing.params['keywords']
 
-            routing.redirect "menu/#{keywords}"
+            routing.redirect "menu/#{ori_keywords}"
           end
         end
 
@@ -35,7 +35,7 @@ module Foodegrient
           routing.get do
             result = Spoonacular::MenuMapper
                      .new(App.config.FOOD_API_TOKEN)
-                     .search(keywords.split)
+                     .search(keywords.split('%20'))
 
             results_list = Views::ResultsList.new(keywords, result)
 
