@@ -3,8 +3,6 @@
 require 'roda'
 require 'slim'
 
-# require_relative '../../spec/spec_helper'
-
 module Foodegrient
   # Web App
   class App < Roda
@@ -38,7 +36,10 @@ module Foodegrient
             result = Spoonacular::MenuMapper
                      .new(App.config.FOOD_API_TOKEN)
                      .search(keywords.split)
-            view('result', locals: { keywords:, res: result })
+
+            results_list = Views::ResultsList.new(keywords, result)
+
+            view('result', locals: { results_list: })
           end
         end
       end
