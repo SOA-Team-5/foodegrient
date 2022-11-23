@@ -7,7 +7,7 @@ module Foodegrient
   # Web App
   class App < Roda
     plugin :render, engine: 'slim', views: 'app/presentation/views_html'
-    plugin :assets, css: 'style.css', path: 'app/presentation/assets/css'
+    plugin :assets, css: 'style.css', path: 'app/presentation/assets'
     plugin :common_logger, $stderr
     plugin :halt
 
