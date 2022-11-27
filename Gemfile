@@ -14,6 +14,7 @@ end
 
 # Web Application
 gem 'puma', '~> 6'
+gem 'rack-session', '~> 0.3'
 gem 'roda', '~> 3'
 gem 'slim', '~> 4'
 
