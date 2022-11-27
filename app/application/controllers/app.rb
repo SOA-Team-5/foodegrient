@@ -27,7 +27,7 @@ module Foodegrient
         
         if empty_check[0]==false
           session[:watching].insert(0, true).uniq!
-          flash[:error] = 'Please enter keywords'
+          flash[:error] = 'Input Error: empty input or formatting error'
           routing.redirect "/"
         end
         view 'home'
@@ -38,7 +38,7 @@ module Foodegrient
           # POST /project/
           routing.post do
             ori_keywords = routing.params['keywords']
-            if (ori_keywords.length == 0 || Forms::NewQuery.new.call(ingredients:ori_keywords.split('%20')).failure?)
+            if (ori_keywords.length == 0 || Forms::NewQuery.new.call(ingredients:ori_keywords.split(' ')).failure?)
               session[:watching].insert(0, false).uniq!
               response.status = 400
               routing.redirect "../"
@@ -46,6 +46,7 @@ module Foodegrient
               session[:watching].insert(0, true).uniq!
               routing.redirect "menu/#{ori_keywords}"
             end
+            
           end
         end
 
