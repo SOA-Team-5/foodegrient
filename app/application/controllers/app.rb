@@ -38,12 +38,11 @@ module Foodegrient
           # POST /project/
           routing.post do
             ori_keywords = routing.params['keywords']
-            if (ori_keywords.length == 0 || ori_keywords.empty?)
+            if (ori_keywords.length == 0 || Forms::NewQuery.new.call(ingredients:ori_keywords.split('%20')).failure?)
               session[:watching].insert(0, false).uniq!
               response.status = 400
               routing.redirect "../"
             else
-              # session[:watching].delete(0)
               session[:watching].insert(0, true).uniq!
               routing.redirect "menu/#{ori_keywords}"
             end
