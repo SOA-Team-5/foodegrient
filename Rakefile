@@ -81,6 +81,7 @@ namespace :quality do
 
   desc 'code style linter'
   task :rubocop do
+    require 'SecureRandom'
     sh 'rubocop'
   end
 
