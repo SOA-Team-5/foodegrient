@@ -21,6 +21,7 @@ task :new_session_secret do
   puts "SESSION_SECRET: #{secret}"
 end
 
+
 namespace :db do
   task :config do
     require 'sequel'
