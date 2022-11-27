@@ -20,7 +20,16 @@ module Foodegrient
 
       # GET /
       routing.root do
-        flash.now[:notice] = 'Search for the recipe you want'
+        session[:watching] ||= []
+        
+        empty_check = session[:watching]
+        
+        
+        if empty_check[0]==false
+          session[:watching].insert(0, true).uniq!
+          flash[:error] = 'Please enter keywords'
+          routing.redirect "/"
+        end
         view 'home'
       end
 
@@ -29,10 +38,14 @@ module Foodegrient
           # POST /project/
           routing.post do
             ori_keywords = routing.params['keywords']
-            unless (ori_keywords.nil? || ori_keywords.empty?)
-              flash[:error] = 'Please enter menu'
+            if (ori_keywords.length == 0 || ori_keywords.empty?)
+              session[:watching].insert(0, false).uniq!
               response.status = 400
-              routing.redirect "/"
+              routing.redirect "../"
+            else
+              # session[:watching].delete(0)
+              session[:watching].insert(0, true).uniq!
+              routing.redirect "menu/#{ori_keywords}"
             end
           end
         end
