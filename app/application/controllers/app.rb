@@ -2,10 +2,13 @@
 
 require 'roda'
 require 'slim'
+require 'slim/include'
 
 module Foodegrient
   # Web App
   class App < Roda
+    plugin :halt
+    plugin :flash
     plugin :render, engine: 'slim', views: 'app/presentation/views_html'
     plugin :assets, css: 'style.css', path: 'app/presentation/assets'
     plugin :common_logger, $stderr
@@ -17,6 +20,16 @@ module Foodegrient
 
       # GET /
       routing.root do
+        session[:watching] ||= []
+        
+        empty_check = session[:watching]
+        
+        
+        if empty_check[0]==false
+          session[:watching].insert(0, true).uniq!
+          flash[:error] = 'Please enter keywords'
+          routing.redirect "/"
+        end
         view 'home'
       end
 
@@ -25,8 +38,14 @@ module Foodegrient
           # POST /project/
           routing.post do
             ori_keywords = routing.params['keywords']
-
-            routing.redirect "menu/#{ori_keywords}"
+            if (ori_keywords.length == 0 || Forms::NewQuery.new.call(ingredients:ori_keywords.split('%20')).failure?)
+              session[:watching].insert(0, false).uniq!
+              response.status = 400
+              routing.redirect "../"
+            else
+              session[:watching].insert(0, true).uniq!
+              routing.redirect "menu/#{ori_keywords}"
+            end
           end
         end
 
