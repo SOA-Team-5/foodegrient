@@ -4,6 +4,7 @@ require 'figaro'
 require 'roda'
 require 'sequel'
 require 'yaml'
+require 'rack/session'
 
 module Foodegrient
   # Configuration for the App
@@ -24,6 +25,8 @@ module Foodegrient
       def self.config 
         Figaro.env
       end
+
+      use Rack::Session::Cookie, secret: config.SESSION_SECRET
 
       configure :development, :test do
         ENV['DATABASE_URL'] = "sqlite://#{config.DB_FILENAME}"
