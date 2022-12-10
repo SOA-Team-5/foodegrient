@@ -38,7 +38,7 @@ module Foodegrient
           # POST /project/
           routing.post do
             ori_keywords = routing.params['keywords']
-            if (ori_keywords.length == 0 || Forms::NewQuery.new.call(ingredients:ori_keywords.split(' ')).failure?)
+            if (ori_keywords.length == 0 || Service::Keywords.new.call(ori_keywords))
               session[:watching].insert(0, false).uniq!
               response.status = 400
               routing.redirect "../"
